@@ -4,7 +4,7 @@ from accounts.models import User
 class CompanyDetails(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, unique=True, null=True, blank=True)
-    size = models.IntegerField(default=0)
+    size = models.IntegerField(default=1)
     website = models.URLField(max_length=200, null=True, blank=True)
     phone = models.CharField(max_length=15, unique=True, null=True, blank=True)
     city = models.CharField(max_length=255, null=True, blank=True)

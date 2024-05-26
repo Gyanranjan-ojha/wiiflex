@@ -3,7 +3,7 @@ URL configuration for dqh_admin_app.
 """
 
 from django.urls import path
-from accounts.views import *
+from accounts.views import UserRegister, UserLogin, UserLogout
 
 urlpatterns = [
     #___________________________GET URL paths______________________________

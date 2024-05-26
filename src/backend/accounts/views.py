@@ -34,6 +34,8 @@ class UserRegister(APIView):
             company = None
             if company_name:
                 company, company_created = CompanyDetails.objects.get_or_create(name=company_name)
+                if company_created:
+                    company.save()
 
             # Create the user
             hashed_password = make_password(password)
@@ -44,6 +46,8 @@ class UserRegister(APIView):
                 last_name=last_name or '',
                 agree_terms=agree_terms
             )
+            if user_created:
+                user.save()
             
             # associate the user and company
             if company and user:

@@ -4,7 +4,7 @@ from company.models import CompanyDetails
 
 class JobDetails(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255, unique=True, null=True, blank=True)
+    name = models.CharField(max_length=255, unique=False, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_column="user_id")
     company = models.ForeignKey(CompanyDetails, on_delete=models.CASCADE, db_column="company_id")
@@ -13,10 +13,10 @@ class JobDetails(models.Model):
     country = models.CharField(max_length=255, null=True, blank=True)
     address = models.TextField(null=True, blank=True)
     job_type = models.CharField(max_length=200, null=True, blank=True)
-    contract_type = models.CharField(max_length=200, null=True, blank=True)
     experience_years = models.IntegerField(default=0)
     pay_from = models.FloatField(default=0)
     pay_to = models.FloatField(default=0)
+    pay_contract_type = models.CharField(max_length=200, null=True, blank=True)
     compensation_offers = models.CharField(max_length=200, null=True, blank=True) # csv
     benefit_offers = models.CharField(max_length=200, null=True, blank=True) # csv
     no_of_candidates = models.IntegerField(default=0)
