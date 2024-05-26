@@ -103,8 +103,12 @@ Create a `.env` file in the backend directory and provide the necessary environm
 - Migrate the Database for creating tables by django commands
 
 ```bash
-  python manage.py makemigrations app
-  python manage.py migrate app
+  python manage.py makemigrations accounts
+  python manage.py migrate accounts
+  python manage.py makemigrations company
+  python manage.py migrate company
+  python manage.py makemigrations job
+  python manage.py migrate job
   python manage.py makemigrations
   python manage.py migrate
 ```
