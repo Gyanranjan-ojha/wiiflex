@@ -9,10 +9,10 @@ WIIFLEX is a platform designed for companies seeking to harness top-tier talent.
 
 Before installing the WIIFLEX, ensure you have the following installed:
 
-- [Python](https://www.python.org/) (version 3.10 or higher)
+- [Python](https://www.python.org/downloads/) (version 3.10 or higher)
 - [Node.js](https://nodejs.org/en/) (version 16.x or higher)
-- [MySQL Server](https://www.mysql.com/) (version 8.0 or higher)
-- [git](https://git-scm.com/) (v2.13 or greater)
+- [MySQL Server](https://dev.mysql.com/downloads/installer/) (version 8.0 or higher)
+- [git](https://git-scm.com/) (version 2.13 or higher)
 
 
 ## Installation
