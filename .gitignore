@@ -1,0 +1,49 @@
+# Ignore backend dependencies
+venv/
+
+# Ignore environment variables
+.env
+
+# Ignore python cache folders
+/__pycache__/
+__pycache__/
+*.pyc
+
+# Ignore pytest cache folders
+.pytest_cache
+
+# Ignore test files
+test.py
+
+# Migrations Folder
+migrations/
+
+# Ignore logs files
+logs/
+*.log
+*.log.*
+npm-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Ignore node artifact files
+node_modules/
+dist/
+dist-ssr
+*.local
+
+# vitest test directory
+coverage/
+__tests__/
+mocks/
+
+# Ignore editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
