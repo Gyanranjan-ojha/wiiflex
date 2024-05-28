@@ -1,15 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { Button, Input, Img, Heading, Text, Radio, RadioGroup } from "../../components";
+import {
+  Button,
+  Input,
+  Img,
+  Heading,
+  Text,
+  Radio,
+  RadioGroup,
+} from "../../components";
+import { useFormContext } from "context/FormContextProvider";
+import { useNavigate } from "react-router-dom";
+
 // import Header from "../../components/Header";
 
 export default function CreateJob2Page() {
+  const { formData, updateFormData } = useFormContext();
+  const [isComplete, setIsComplete] = useState(false);
+  const navigate = useNavigate();
+
+  const handleNext = () => {
+    // Navigate to the next page
+    navigate("/createjob3");
+  };
+
+  const handleInputChange = (e) => {
+    updateFormData(e.target.name, e.target.value);
+    checkCompletion();
+  };
+
+  const checkCompletion = () => {
+    // Add your validation logic here to set `isComplete` as true or false
+  };
+
   return (
     <>
       <Helmet>
         <title>WIIFLEX</title>
-        <meta name="description" content="Web site created using create-react-app" />
+        <meta
+          name="description"
+          content="Web site created using create-react-app"
+        />
       </Helmet>
       <div className="flex w-full flex-col bg-white-A700 pt-6 sm:pt-5">
         {/* <div>
@@ -17,10 +49,18 @@ export default function CreateJob2Page() {
         </div> */}
         <div className="flex w-[87%] items-start justify-between gap-5 md:w-full md:flex-col md:p-5">
           <div className="flex w-[57%] flex-col items-start justify-center gap-[123px] bg-blue-100 pb-[369px] pl-[169px] pr-14 pt-[79px] md:w-full md:gap-[92px] md:p-5 sm:gap-[61px]">
-            <Heading size="6xl" as="h1" className="ml-[21px] !text-white-A700 md:ml-0">
+            <Heading
+              size="6xl"
+              as="h1"
+              className="ml-[21px] !text-white-A700 md:ml-0"
+            >
               Connect. Merge. Work
             </Heading>
-            <Img src="images/img_abstraction.png" alt="abstraction" className="h-[685px] w-[87%] object-cover" />
+            <Img
+              src="images/img_abstraction.png"
+              alt="abstraction"
+              className="h-[685px] w-[87%] object-cover"
+            />
           </div>
           <div className="mt-[51px] flex w-[35%] flex-col items-start md:w-full">
             <Heading size="3xl" as="h2" className="!text-teal-900">
@@ -33,7 +73,11 @@ export default function CreateJob2Page() {
               <Text as="p" className="text-gray-600_01 whitespace-nowrap">
                 Job Details
               </Text>
-              <Heading size="xl" as="h3" className="text-light_blue-700 whitespace-nowrap">
+              <Heading
+                size="xl"
+                as="h3"
+                className="text-light_blue-700 whitespace-nowrap"
+              >
                 Candidate Requirements
               </Heading>
               <Text as="p" className="text-gray-600_01 whitespace-nowrap">
@@ -149,7 +193,9 @@ export default function CreateJob2Page() {
                   <Text size="xs" as="p">
                     Please Enter Your Company’s Website
                   </Text>
-                  <Heading as="p">(if there is one or leave the form empty)</Heading>
+                  <Heading as="p">
+                    (if there is one or leave the form empty)
+                  </Heading>
                 </div>
               </div>
               <Input
@@ -167,7 +213,13 @@ export default function CreateJob2Page() {
                 Yes
               </Input>
               <Link to="/createjob3">
-                <Button size="xl" shape="round" className="mt-10 w-full font-bold sm:px-5">
+                <Button
+                  size="xl"
+                  shape="round"
+                  className="mt-10 w-full font-bold sm:px-5"
+                  // disabled={!isComplete}
+                  onClick={handleNext}
+                >
                   Next
                 </Button>
               </Link>

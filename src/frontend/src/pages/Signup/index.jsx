@@ -77,12 +77,16 @@ export default function SignupPage() {
         requestData.agree_terms = true;
       }
 
-      const response = await axios.post("http://127.0.0.1:8000/api/accounts/register/", requestData);
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/accounts/register/",
+        requestData
+      );
 
       if (response.status === 201) {
         setSuccess("Account created successfully.");
-        localStorage.setItem('firstName', formData.firstName);
-        localStorage.setItem('lastName', formData.lastName);
+        localStorage.setItem("firstName", formData.firstName);
+        localStorage.setItem("lastName", formData.lastName);
+        localStorage.setItem("email", formData.email);
         setError("");
 
         // Clear form data after successful submission
@@ -117,27 +121,57 @@ export default function SignupPage() {
     <>
       <Helmet>
         <title>WIIFLEX</title>
-        <meta name="description" content="Web site created using create-react-app" />
+        <meta
+          name="description"
+          content="Web site created using create-react-app"
+        />
       </Helmet>
       <div className="flex w-full bg-white-A700">
         <div className="flex w-[85%] items-center justify-between gap-5 md:w-full md:flex-col md:p-5">
           <div className="flex w-[59%] flex-col items-start justify-center gap-[74px] bg-blue-100 pb-[116px] pl-[169px] pr-14 pt-[140px] md:w-full md:gap-[55px] md:p-5 sm:gap-[37px]">
-            <Heading size="6xl" as="h1" className="ml-[21px] !text-white-A700 md:ml-0">
+            <Heading
+              size="6xl"
+              as="h1"
+              className="ml-[21px] !text-white-A700 md:ml-0"
+            >
               Connect. Merge. Work
             </Heading>
-            <Img src="images/img_abstraction.png" alt="abstraction" className="h-[685px] w-[87%] object-cover" />
+            <Img
+              src="images/img_abstraction.png"
+              alt="abstraction"
+              className="h-[685px] w-[87%] object-cover"
+            />
           </div>
           <div className="mb-[50px] flex w-[22%] flex-col items-center self-end md:w-full">
-            <Img src="images/img_wiiflex_softwar.png" alt="wiiflexsoftwar" className="h-[50px] w-[40%] object-cover" />
+            <Img
+              src="images/img_wiiflex_softwar.png"
+              alt="wiiflexsoftwar"
+              className="h-[50px] w-[40%] object-cover"
+            />
             <a href="#" className="mt-[9px]">
-              <Heading size="xl" as="h2" className="!font-semibold !text-gray-800_02">
+              <Heading
+                size="xl"
+                as="h2"
+                className="!font-semibold !text-gray-800_02"
+              >
                 Sign Up
               </Heading>
             </a>
-            <form onSubmit={handleSubmit} className="mt-[26px] flex flex-col items-center self-stretch">
+            <form
+              onSubmit={handleSubmit}
+              className="mt-[26px] flex flex-col items-center self-stretch"
+            >
               <div className="flex flex-col gap-4 self-stretch">
-                {success && <Text as="p" className="text-green-500">{success}</Text>}
-                {error && <Text as="p" className="text-red-500">{error}</Text>}
+                {success && (
+                  <Text as="p" className="text-green-500">
+                    {success}
+                  </Text>
+                )}
+                {error && (
+                  <Text as="p" className="text-red-500">
+                    {error}
+                  </Text>
+                )}
                 <Input
                   type="text"
                   name="companyName"
@@ -182,7 +216,10 @@ export default function SignupPage() {
                     <span
                       className="cursor-pointer"
                       onClick={() =>
-                        togglePasswordVisibility("showPassword", "passwordEyeOpen")
+                        togglePasswordVisibility(
+                          "showPassword",
+                          "passwordEyeOpen"
+                        )
                       }
                     >
                       <Img
@@ -255,7 +292,12 @@ export default function SignupPage() {
                   </Text>
                 </div>
               </div>
-              <Button size="xl" shape="round" className="mt-[25px] w-full font-bold sm:px-5" type="submit">
+              <Button
+                size="xl"
+                shape="round"
+                className="mt-[25px] w-full font-bold sm:px-5"
+                type="submit"
+              >
                 Create Your Account
               </Button>
               <div className="mt-[34px] flex flex-col items-center gap-4 px-[11px] pb-[7px] pt-[11px]">

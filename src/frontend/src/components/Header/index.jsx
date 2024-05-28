@@ -7,8 +7,8 @@ export default function Header({ ...props }) {
 
   useEffect(() => {
     // Retrieve first name and last name from localStorage
-    const storedFirstName = localStorage.getItem('firstName');
-    const storedLastName = localStorage.getItem('lastName');
+    const storedFirstName = localStorage.getItem("firstName");
+    const storedLastName = localStorage.getItem("lastName");
 
     setFirstName(storedFirstName);
     setLastName(storedLastName);
@@ -19,7 +19,7 @@ export default function Header({ ...props }) {
         <div className="flex w-[8%] items-center justify-center md:w-full">
           <div className="h-[46px] w-[46px] rounded-[23px] bg-gray-200" />
           <Text as="p" className=" !text-gray-800_02">
-          {firstName} {lastName}
+            {firstName} {lastName}
           </Text>
           {/* <Img src="images/img_keyboard_arrow_down.svg" alt="keyboardarrow" className="ml-[7px] h-[20px]" /> */}
         </div>

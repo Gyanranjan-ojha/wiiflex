@@ -1,26 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { Button, Radio, RadioGroup, Text, Input, Img, Heading } from "../../components";
+import {
+  Button,
+  Radio,
+  RadioGroup,
+  Text,
+  Input,
+  Img,
+  Heading,
+} from "../../components";
+import { useFormContext } from "context/FormContextProvider";
+import { useNavigate } from "react-router-dom";
+
 // import Header from "../../components/Header";
 
 export default function CreateJob1Page() {
+  const { formData, updateFormData } = useFormContext();
+  const [isComplete, setIsComplete] = useState(false);
+  const navigate = useNavigate();
+
+  const handleNext = () => {
+    // Navigate to the next page
+    navigate("/createjob2");
+  };
+
+  const handleInputChange = (e) => {
+    updateFormData(e.target.name, e.target.value);
+    checkCompletion();
+  };
+
+  const checkCompletion = () => {
+    // Add your validation logic here to set `isComplete` as true or false
+  };
+
   return (
     <>
       <Helmet>
         <title>WIIFLEX</title>
-        <meta name="description" content="Web site created using create-react-app" />
+        <meta
+          name="description"
+          content="Web site created using create-react-app"
+        />
       </Helmet>
       <div className="flex w-full bg-white-A700">
         <div className="flex w-[87%] items-center justify-between gap-5 md:w-full md:flex-col md:p-5">
           <div className="flex w-[58%] flex-col items-start justify-center gap-[336px] bg-blue-100 pb-[481px] pl-[169px] pr-14 pt-[188px] md:w-full md:gap-[252px] md:p-5 sm:gap-[168px]">
-            <Heading size="6xl" as="h1" className="ml-[41px] !text-white-A700 md:ml-0">
+            <Heading
+              size="6xl"
+              as="h1"
+              className="ml-[41px] !text-white-A700 md:ml-0"
+            >
               Connect. Merge. Work
             </Heading>
-            <Img src="images/img_abstraction.png" alt="abstraction" className="h-[685px] w-[87%] object-cover" />
+            <Img
+              src="images/img_abstraction.png"
+              alt="abstraction"
+              className="h-[685px] w-[87%] object-cover"
+            />
           </div>
           <div className="mb-[49px] flex w-[35%] flex-col items-start self-end md:w-full">
-          {/* <div>
+            {/* <div>
             <Header />
           </div> */}
             <Heading size="3xl" as="h2" className="!text-teal-900">
@@ -30,7 +70,11 @@ export default function CreateJob1Page() {
               <Text as="p" className="text-gray-600_01 whitespace-nowrap">
                 Company Details
               </Text>
-              <Heading size="xl" as="h3" className="text-light_blue-700 whitespace-nowrap">
+              <Heading
+                size="xl"
+                as="h3"
+                className="text-light_blue-700 whitespace-nowrap"
+              >
                 Job Details
               </Heading>
               <Text as="p" className="text-gray-600_01 whitespace-nowrap">
@@ -52,7 +96,11 @@ export default function CreateJob1Page() {
               What Type of Job is it?
             </Text>
             <RadioGroup name="whattypeof" className="mt-[18px] flex flex-col">
-              <Radio value="fulltime" label="Full-Time" className="mr-6 flex-1 gap-2 text-sm text-cyan-900 md:mr-0" />
+              <Radio
+                value="fulltime"
+                label="Full-Time"
+                className="mr-6 flex-1 gap-2 text-sm text-cyan-900 md:mr-0"
+              />
               <Radio
                 value="parttime"
                 label="Part-Time"
@@ -73,7 +121,11 @@ export default function CreateJob1Page() {
                 label="Internship"
                 className="mr-[19px] mt-5 flex-1 gap-2 p-px text-sm text-cyan-900 md:mr-0"
               />
-              <Radio value="commission" label="Commission" className="mt-5 flex-1 gap-2 p-px text-sm text-cyan-900" />
+              <Radio
+                value="commission"
+                label="Commission"
+                className="mt-5 flex-1 gap-2 p-px text-sm text-cyan-900"
+              />
             </RadioGroup>
             <Input
               name="duration"
@@ -229,7 +281,13 @@ export default function CreateJob1Page() {
               />
             </RadioGroup>
             <Link to="/createjob2">
-              <Button size="xl" shape="round" className="mt-[23px] min-w-[360px] font-bold sm:px-5">
+              <Button
+                size="xl"
+                shape="round"
+                className="mt-[23px] min-w-[360px] font-bold sm:px-5"
+                // disabled={!isComplete}
+                onClick={handleNext}
+              >
                 Next
               </Button>
             </Link>

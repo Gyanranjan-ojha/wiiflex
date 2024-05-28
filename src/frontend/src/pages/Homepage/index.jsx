@@ -10,7 +10,10 @@ export default function HomepagePage() {
     <>
       <Helmet>
         <title>WIIFLEX</title>
-        <meta name="description" content="Web site created using create-react-app" />
+        <meta
+          name="description"
+          content="Web site created using create-react-app"
+        />
       </Helmet>
       <div className="flex w-full flex-col items-center gap-[22px] bg-white-A700 pt-[21px] sm:pt-5">
         <header className="flex flex-col items-center gap-[13px] self-stretch">
@@ -33,28 +36,40 @@ export default function HomepagePage() {
               </li>
               <li>
                 <a href="#" className="cursor-pointer">
-                  <Text as="p" className="!text-gray-800 hover:font-bold hover:!text-light_blue-700">
+                  <Text
+                    as="p"
+                    className="!text-gray-800 hover:font-bold hover:!text-light_blue-700"
+                  >
                     Archived
                   </Text>
                 </a>
               </li>
               <li>
                 <a href="#" className="cursor-pointer">
-                  <Text as="p" className="!text-gray-800 hover:font-bold hover:!text-light_blue-700">
+                  <Text
+                    as="p"
+                    className="!text-gray-800 hover:font-bold hover:!text-light_blue-700"
+                  >
                     Saved Candidates
                   </Text>
                 </a>
               </li>
               <li>
                 <a href="#" className="cursor-pointer">
-                  <Text as="p" className="!text-gray-800 hover:font-bold hover:!text-light_blue-700">
+                  <Text
+                    as="p"
+                    className="!text-gray-800 hover:font-bold hover:!text-light_blue-700"
+                  >
                     Interviews
                   </Text>
                 </a>
               </li>
               <li>
                 <a href="#" className="cursor-pointer">
-                  <Text as="p" className="!text-gray-800 hover:font-bold hover:!text-light_blue-700">
+                  <Text
+                    as="p"
+                    className="!text-gray-800 hover:font-bold hover:!text-light_blue-700"
+                  >
                     Message
                   </Text>
                 </a>
@@ -62,17 +77,28 @@ export default function HomepagePage() {
             </ul>
             <div className="flex w-[20%] items-center justify-between gap-5 md:w-full">
               <Link to="/createjob">
-                <Button size="4xl" className="min-w-[120px] rounded-[25px] font-dmsans font-medium sm:px-5">
+                <Button
+                  size="4xl"
+                  className="min-w-[120px] rounded-[25px] font-dmsans font-medium sm:px-5"
+                >
                   Post Job
                 </Button>
               </Link>
               <a href="#">
-                <Img src="images/img_shape.svg" alt="shape" className="mb-3 h-[20px] self-end" />
+                <Img
+                  src="images/img_shape.svg"
+                  alt="shape"
+                  className="mb-3 h-[20px] self-end"
+                />
               </a>
               <div className="flex items-center">
                 <div className="flex flex-col rounded-[23px] bg-gray-200">
                   <a href="#">
-                    <Img src="images/img_rectangle.png" alt="image" className="h-[46px] rounded-[22px] object-cover" />
+                    <Img
+                      src="images/img_rectangle.png"
+                      alt="image"
+                      className="h-[46px] rounded-[22px] object-cover"
+                    />
                   </a>
                 </div>
                 <div>
@@ -97,10 +123,14 @@ export default function HomepagePage() {
                 </Heading>
                 {/* <div className="h-[16px] w-[4px] bg-black-900" /> */}
               </div>
-              <Text as="p" className="mt-1.5 w-full leading-[21px] !text-gray-800_02">
+              <Text
+                as="p"
+                className="mt-1.5 w-full leading-[21px] !text-gray-800_02"
+              >
                 <span className="text-gray-800_02">
                   <>
-                    Our company Microsoft is looking for a senior UI and UX lead designer to take over March, 2020.
+                    Our company Microsoft is looking for a senior UI and UX lead
+                    designer to take over March, 2020.
                     <br />
                     <br />
                   </>
@@ -123,16 +153,28 @@ export default function HomepagePage() {
                 <Heading size="s" as="h2" className="!text-teal-900">
                   Skills -
                 </Heading>
-                <Button color="teal_900" className="w-full flex-1 rounded-[17px] sm:self-stretch">
+                <Button
+                  color="teal_900"
+                  className="w-full flex-1 rounded-[17px] sm:self-stretch"
+                >
                   Adobe XD
                 </Button>
-                <Button color="teal_900" className="w-full flex-1 rounded-[17px] sm:self-stretch">
+                <Button
+                  color="teal_900"
+                  className="w-full flex-1 rounded-[17px] sm:self-stretch"
+                >
                   Sketch Pro
                 </Button>
-                <Button color="teal_900" className="w-full flex-1 rounded-[17px] sm:self-stretch">
+                <Button
+                  color="teal_900"
+                  className="w-full flex-1 rounded-[17px] sm:self-stretch"
+                >
                   Adobe XD
                 </Button>
-                <Button color="teal_900" className="w-full flex-1 rounded-[17px] sm:self-stretch">
+                <Button
+                  color="teal_900"
+                  className="w-full flex-1 rounded-[17px] sm:self-stretch"
+                >
                   Sketch Pro
                 </Button>
               </div>
@@ -141,7 +183,11 @@ export default function HomepagePage() {
                   <Heading size="s" as="h3" className="!text-teal-900">
                     Location -
                   </Heading>
-                  <Heading size="s" as="h4" className="h-[17px] w-[18px] !text-teal-900">
+                  <Heading
+                    size="s"
+                    as="h4"
+                    className="h-[17px] w-[18px] !text-teal-900"
+                  >
                     NY
                   </Heading>
                   <div className="ml-[54px] flex">
@@ -161,7 +207,10 @@ export default function HomepagePage() {
               </div>
               <div className="mt-[18px] h-px self-stretch bg-gray-500_47" />
             </div>
-            <Heading as="p" className="ml-[5px] mt-[9px] self-start !text-light_blue-700 md:ml-0">
+            <Heading
+              as="p"
+              className="ml-[5px] mt-[9px] self-start !text-light_blue-700 md:ml-0"
+            >
               Candidates
             </Heading>
             <div className="mt-2.5 grid grid-cols-2 justify-center gap-[21px] self-stretch md:grid-cols-1">
@@ -176,37 +225,71 @@ export default function HomepagePage() {
                     <div className="flex flex-col gap-[7px]">
                       <div className="flex items-center justify-between gap-5">
                         <Link to="/candidate">
-                          <Heading as="p" className="self-end !text-light_blue-700">
+                          <Heading
+                            as="p"
+                            className="self-end !text-light_blue-700"
+                          >
                             Steve Morgan
                           </Heading>
                         </Link>
                         <div className="flex items-center gap-5">
-                          <Img src="images/img_favorite.svg" alt="steve_morgan" className="h-[15px] w-[16px]" />
-                          <Button size="md" shape="circle" className="w-[30px] !rounded-[15px]">
+                          <Img
+                            src="images/img_favorite.svg"
+                            alt="steve_morgan"
+                            className="h-[15px] w-[16px]"
+                          />
+                          <Button
+                            size="md"
+                            shape="circle"
+                            className="w-[30px] !rounded-[15px]"
+                          >
                             <Img src="images/img_television.svg" />
                           </Button>
                         </div>
                       </div>
-                      <Text size="s" as="p" className="leading-[19px] !text-gray-800_01">
+                      <Text
+                        size="s"
+                        as="p"
+                        className="leading-[19px] !text-gray-800_01"
+                      >
                         <span className="text-gray-800_01">
-                          Had 5 years of working experience as design lead. Working for a reputated com..&nbsp;
+                          Had 5 years of working experience as design lead.
+                          Working for a reputated com..&nbsp;
                         </span>
-                        <span className="font-semibold text-gray-800_01">See More</span>
+                        <span className="font-semibold text-gray-800_01">
+                          See More
+                        </span>
                       </Text>
                     </div>
                   </div>
                 </div>
                 <div className="mt-[30px] flex flex-wrap">
-                  <Text size="xs" as="p" className="self-start !text-gray-800_01">
+                  <Text
+                    size="xs"
+                    as="p"
+                    className="self-start !text-gray-800_01"
+                  >
                     Location -
                   </Text>
-                  <Heading size="s" as="p" className="ml-[5px] h-[18px] w-[18px] self-start !text-teal-900">
+                  <Heading
+                    size="s"
+                    as="p"
+                    className="ml-[5px] h-[18px] w-[18px] self-start !text-teal-900"
+                  >
                     NY
                   </Heading>
-                  <Text size="xs" as="p" className="ml-[54px] self-end !text-gray-800_01">
+                  <Text
+                    size="xs"
+                    as="p"
+                    className="ml-[54px] self-end !text-gray-800_01"
+                  >
                     Type -
                   </Text>
-                  <Heading size="s" as="p" className="self-start !text-gray-800_01">
+                  <Heading
+                    size="s"
+                    as="p"
+                    className="self-start !text-gray-800_01"
+                  >
                     Remote
                   </Heading>
                 </div>
@@ -250,7 +333,10 @@ export default function HomepagePage() {
                         <div className="flex flex-col gap-[7px]">
                           <div className="flex items-center self-start">
                             <Link to="/candidate">
-                              <Heading as="p" className="self-end !text-light_blue-700">
+                              <Heading
+                                as="p"
+                                className="self-end !text-light_blue-700"
+                              >
                                 Dusana Semenov
                               </Heading>
                             </Link>
@@ -259,30 +345,57 @@ export default function HomepagePage() {
                               alt="favorite"
                               className="ml-[50px] h-[15px] w-[16px]"
                             />
-                            <Button size="md" shape="circle" className="ml-3 w-[30px] !rounded-[15px]">
+                            <Button
+                              size="md"
+                              shape="circle"
+                              className="ml-3 w-[30px] !rounded-[15px]"
+                            >
                               <Img src="images/img_television.svg" />
                             </Button>
                           </div>
-                          <Text size="s" as="p" className="leading-[19px] !text-gray-800_01">
+                          <Text
+                            size="s"
+                            as="p"
+                            className="leading-[19px] !text-gray-800_01"
+                          >
                             <span className="text-gray-800_01">
-                              Had 5 years of working experience as design lead. Working for a reputated com..&nbsp;
+                              Had 5 years of working experience as design lead.
+                              Working for a reputated com..&nbsp;
                             </span>
-                            <span className="font-semibold text-gray-800_01">See More</span>
+                            <span className="font-semibold text-gray-800_01">
+                              See More
+                            </span>
                           </Text>
                         </div>
                       </div>
                     </div>
                     <div className="mt-[30px] flex flex-wrap">
-                      <Text size="xs" as="p" className="self-start !text-gray-800_01">
+                      <Text
+                        size="xs"
+                        as="p"
+                        className="self-start !text-gray-800_01"
+                      >
                         Location -
                       </Text>
-                      <Heading size="s" as="p" className="ml-[5px] h-[18px] w-[18px] self-start !text-teal-900">
+                      <Heading
+                        size="s"
+                        as="p"
+                        className="ml-[5px] h-[18px] w-[18px] self-start !text-teal-900"
+                      >
                         NY
                       </Heading>
-                      <Text size="xs" as="p" className="ml-[54px] self-end !text-gray-800_01">
+                      <Text
+                        size="xs"
+                        as="p"
+                        className="ml-[54px] self-end !text-gray-800_01"
+                      >
                         Type -
                       </Text>
-                      <Heading size="s" as="p" className="self-start !text-gray-800_01">
+                      <Heading
+                        size="s"
+                        as="p"
+                        className="self-start !text-gray-800_01"
+                      >
                         Remote
                       </Heading>
                     </div>
@@ -319,42 +432,80 @@ export default function HomepagePage() {
                 <div className="flex w-full flex-col gap-[13px]">
                   <div className="flex flex-col gap-[30px]">
                     <div className="flex items-start gap-[17px]">
-                      <Img src="images/img_bitmap.png" alt="bitmap" className="mt-1.5 h-[60px] w-[60px] object-cover" />
+                      <Img
+                        src="images/img_bitmap.png"
+                        alt="bitmap"
+                        className="mt-1.5 h-[60px] w-[60px] object-cover"
+                      />
                       <div className="flex-1">
                         <div className="flex flex-col gap-[7px]">
                           <div className="flex items-center justify-between gap-5">
                             <Link to="/candidate">
-                              <Heading as="p" className="self-end !text-light_blue-700">
+                              <Heading
+                                as="p"
+                                className="self-end !text-light_blue-700"
+                              >
                                 Steve Morgan
                               </Heading>
                             </Link>
                             <div className="flex items-start gap-5">
-                              <Img src="images/img_favorite.svg" alt="favorite" className="mt-1.5 h-[15px] w-[16px]" />
-                              <Button size="md" shape="circle" className="w-[30px] !rounded-[15px]">
+                              <Img
+                                src="images/img_favorite.svg"
+                                alt="favorite"
+                                className="mt-1.5 h-[15px] w-[16px]"
+                              />
+                              <Button
+                                size="md"
+                                shape="circle"
+                                className="w-[30px] !rounded-[15px]"
+                              >
                                 <Img src="images/img_television.svg" />
                               </Button>
                             </div>
                           </div>
-                          <Text size="s" as="p" className="leading-[19px] !text-gray-800_01">
+                          <Text
+                            size="s"
+                            as="p"
+                            className="leading-[19px] !text-gray-800_01"
+                          >
                             <span className="text-gray-800_01">
-                              Had 5 years of working experience as design lead. Working for a reputated com..&nbsp;
+                              Had 5 years of working experience as design lead.
+                              Working for a reputated com..&nbsp;
                             </span>
-                            <span className="font-semibold text-gray-800_01">See More</span>
+                            <span className="font-semibold text-gray-800_01">
+                              See More
+                            </span>
                           </Text>
                         </div>
                       </div>
                     </div>
                     <div className="flex flex-wrap">
-                      <Text size="xs" as="p" className="self-start !text-gray-800_01">
+                      <Text
+                        size="xs"
+                        as="p"
+                        className="self-start !text-gray-800_01"
+                      >
                         Location -
                       </Text>
-                      <Heading size="s" as="p" className="ml-[5px] h-[18px] w-[18px] self-start !text-teal-900">
+                      <Heading
+                        size="s"
+                        as="p"
+                        className="ml-[5px] h-[18px] w-[18px] self-start !text-teal-900"
+                      >
                         NY
                       </Heading>
-                      <Text size="xs" as="p" className="ml-[54px] self-end !text-gray-800_01">
+                      <Text
+                        size="xs"
+                        as="p"
+                        className="ml-[54px] self-end !text-gray-800_01"
+                      >
                         Type -
                       </Text>
-                      <Heading size="s" as="p" className="self-start !text-gray-800_01">
+                      <Heading
+                        size="s"
+                        as="p"
+                        className="self-start !text-gray-800_01"
+                      >
                         Remote
                       </Heading>
                     </div>
@@ -409,15 +560,26 @@ export default function HomepagePage() {
                           alt="favorite"
                           className="ml-[50px] mt-1.5 h-[15px] w-[16px]"
                         />
-                        <Button size="md" shape="circle" className="ml-3 w-[30px] !rounded-[15px]">
+                        <Button
+                          size="md"
+                          shape="circle"
+                          className="ml-3 w-[30px] !rounded-[15px]"
+                        >
                           <Img src="images/img_television.svg" />
                         </Button>
                       </div>
-                      <Text size="s" as="p" className="leading-[19px] !text-gray-800_01">
+                      <Text
+                        size="s"
+                        as="p"
+                        className="leading-[19px] !text-gray-800_01"
+                      >
                         <span className="text-gray-800_01">
-                          Had 5 years of working experience as design lead. Working for a reputated com..&nbsp;
+                          Had 5 years of working experience as design lead.
+                          Working for a reputated com..&nbsp;
                         </span>
-                        <span className="font-semibold text-gray-800_01">See More</span>
+                        <span className="font-semibold text-gray-800_01">
+                          See More
+                        </span>
                       </Text>
                     </div>
                   </div>
@@ -425,16 +587,32 @@ export default function HomepagePage() {
                 <div className="mt-[30px]">
                   <div className="flex flex-col items-start gap-[13px]">
                     <div className="flex flex-wrap">
-                      <Text size="xs" as="p" className="self-start !text-gray-800_01">
+                      <Text
+                        size="xs"
+                        as="p"
+                        className="self-start !text-gray-800_01"
+                      >
                         Location -
                       </Text>
-                      <Heading size="s" as="p" className="ml-[5px] h-[18px] w-[18px] self-start !text-teal-900">
+                      <Heading
+                        size="s"
+                        as="p"
+                        className="ml-[5px] h-[18px] w-[18px] self-start !text-teal-900"
+                      >
                         NY
                       </Heading>
-                      <Text size="xs" as="p" className="ml-[54px] self-end !text-gray-800_01">
+                      <Text
+                        size="xs"
+                        as="p"
+                        className="ml-[54px] self-end !text-gray-800_01"
+                      >
                         Type -
                       </Text>
-                      <Heading size="s" as="p" className="self-start !text-gray-800_01">
+                      <Heading
+                        size="s"
+                        as="p"
+                        className="self-start !text-gray-800_01"
+                      >
                         Remote
                       </Heading>
                     </div>
@@ -481,7 +659,11 @@ export default function HomepagePage() {
             >
               Edit Resume
             </Button>
-            <Button size="xl" shape="round" className="w-full font-bold sm:px-5">
+            <Button
+              size="xl"
+              shape="round"
+              className="w-full font-bold sm:px-5"
+            >
               Save and Continue
             </Button>
           </div>

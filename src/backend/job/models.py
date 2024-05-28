@@ -13,13 +13,13 @@ class JobDetails(models.Model):
     country = models.CharField(max_length=255, null=True, blank=True)
     address = models.TextField(null=True, blank=True)
     job_type = models.CharField(max_length=200, null=True, blank=True)
-    experience_years = models.IntegerField(default=0)
-    pay_from = models.FloatField(default=0)
-    pay_to = models.FloatField(default=0)
+    experience_years = models.CharField(max_length=10, null=True, blank=True)
+    pay_from = models.CharField(max_length=10, null=True, blank=True)
+    pay_to = models.CharField(max_length=10, null=True, blank=True)
     pay_contract_type = models.CharField(max_length=200, null=True, blank=True)
     compensation_offers = models.CharField(max_length=200, null=True, blank=True) # csv
     benefit_offers = models.CharField(max_length=200, null=True, blank=True) # csv
-    no_of_candidates = models.IntegerField(default=0)
+    no_of_candidates = models.CharField(max_length=10, null=True, blank=True)
     joining_time = models.CharField(max_length=200, null=True, blank=True)
     is_fully_remote = models.BooleanField(default=False)
     allows_video_interviews = models.BooleanField(default=False)
