@@ -26,3 +26,106 @@ ul {
   padding: 0;
   list-style: none;
 }
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  background-color: transparent !important;
+}
+
+.input-base::placeholder {
+  font-weight: normal;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+.update-placeholder-font::placeholder {
+  font-weight: 900 !important;
+  color: rgb(0, 134, 202);
+  font-size: 16px;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+  -webkit-text-fill-color: rgb(26 79 110);
+}
+
+/* styles.css */
+.scrollbar-invisible {
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+.scrollbar-invisible::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+/* Tailwind custom checkbox style to mimic radio buttons */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  user-select: none;
+}
+
+.container input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #ffffff;
+  border: 1px solid rgb(164, 185, 198);
+  border-radius: 10%;
+  transition: background-color 0.2s;
+}
+
+.container input[type="checkbox"]:checked ~ .checkmark {
+  background-color: #2563eb;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  top: 3px;
+  left: 6px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.container input[type="checkbox"]:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Custom scrollbar */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px; /* Adjust the width as needed */
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: #b0b0b0; /* Grey color for the scrollbar thumb */
+  border-radius: 8px; /* Adjust the radius as needed */
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Lighter grey color for the track */
+}

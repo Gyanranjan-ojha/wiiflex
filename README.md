@@ -4,7 +4,6 @@
 
 WIIFLEX is a platform designed for companies seeking to harness top-tier talent. With powerful collaboration tools and streamlined processes, we connect organizations with skilled professionals to drive innovation and growth.
 
-
 ## Prerequisites
 
 Before installing the WIIFLEX, ensure you have the following installed:
@@ -14,13 +13,12 @@ Before installing the WIIFLEX, ensure you have the following installed:
 - [MySQL Server](https://dev.mysql.com/downloads/installer/) (version 8.0 or higher)
 - [git](https://git-scm.com/) (version 2.13 or higher)
 
-
 ## Installation
 
 **1. Clone the project**
 
 ```bash
-  git clone https://<username>@bitbucket.org/gyan-ranjan-ojha/wiiflex.git
+  git clone https://github.com/Gyanranjan-ojha/wiiflex.git
 ```
 
 **2. Navigate to the project directory**
@@ -29,24 +27,18 @@ Before installing the WIIFLEX, ensure you have the following installed:
   cd wiiflex
 ```
 
-**3. Pull from 'main' branch**
+**3. Pull from 'master' branch**
 
 ```bash
-  git pull origin main
+  git pull origin master
 ```
 
 ## BackEnd Setup
 
-- Navigate to the backend directory:
-
-```bash
-  cd src/backend
-```
-
 - Create a virtual environment
 
 ```bash
-  python -m venv venv
+  python -m venv .venv
 ```
 
 - Activate the virtual environment
@@ -54,13 +46,13 @@ Before installing the WIIFLEX, ensure you have the following installed:
 - For Ubuntu
 
 ```bash
-  source venv/bin/activate
+  source .venv/bin/activate
 ```
 
 - For Windows
 
 ```bash
-  venv/Scripts/activate
+  .venv/Scripts/activate
 ```
 
 - Install python dependencies
@@ -86,6 +78,8 @@ Create a `.env` file in the backend directory and provide the necessary environm
   export MYSQL_DB='<MYSQL_DB>'
   export MYSQL_PORT=<MYSQL_PORT>
   export FE_DOMAIN='<FE_DOMAIN>'
+  export AUTH_EMAIL_HOST_USER='<AUTH_EMAIL_HOST_USER>'
+  export AUTH_EMAIL_HOST_PASSWORD='<AUTH_EMAIL_HOST_PASSWORD>'
 ```
 
 - Given database name in `.env` file will be going to create a database automatically if not exists.
@@ -109,6 +103,10 @@ Create a `.env` file in the backend directory and provide the necessary environm
   python manage.py migrate company
   python manage.py makemigrations job
   python manage.py migrate job
+  python manage.py makemigrations screening_test
+  python manage.py migrate screening_test
+  python manage.py makemigrations candidates
+  python manage.py migrate candidates
   python manage.py makemigrations
   python manage.py migrate
 ```
@@ -117,6 +115,12 @@ Create a `.env` file in the backend directory and provide the necessary environm
 
 ```bash
   python manage.py create_super_user
+```
+
+- Create global screening test questions (Temporary)
+
+```bash
+  python manage.py populate_global_questions
 ```
 
 - Starting the Backend Server
@@ -157,7 +161,7 @@ Create a `.env` file in the frontend directory and provide the necessary environ
 
 **Server:** Django REST Framework
 
-**Client:** React.js + Vite
+**Client:** React.js
 
 **Database:** MySQL Database
 

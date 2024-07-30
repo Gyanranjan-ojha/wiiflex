@@ -21,7 +21,6 @@ export default function Header({ ...props }) {
           <Text as="p" className=" !text-gray-800_02">
             {firstName} {lastName}
           </Text>
-          {/* <Img src="images/img_keyboard_arrow_down.svg" alt="keyboardarrow" className="ml-[7px] h-[20px]" /> */}
         </div>
         <div className="h-px w-full self-stretch bg-gray-500_19" />
       </div>

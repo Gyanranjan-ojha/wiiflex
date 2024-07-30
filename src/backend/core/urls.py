@@ -15,4 +15,7 @@ urlpatterns = [
     path('api/accounts/',include('accounts.urls')),
     path('api/company/',include('company.urls')),
     path('api/job/',include('job.urls')),
+    path('api/screening_test/',include('screening_test.urls')),
+    path('api/dashboard/',include('dashboard.urls')),
+    path('api/candidates/',include('candidates.urls')),
 ]

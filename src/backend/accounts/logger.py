@@ -1,3 +1,3 @@
-import logging
+# import logging
 
-logger = logging.getLogger('WIIFLEX_API')
+# logger = logging.getLogger('WIIFLEX_API')

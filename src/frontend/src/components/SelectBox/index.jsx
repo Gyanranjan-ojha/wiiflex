@@ -22,7 +22,10 @@ const SelectBox = React.forwardRef(
   (
     {
       children,
+      onChange,
+      value,
       className = "",
+      menuClassName = "",
       options = [],
       isSearchable = false,
       isMulti = false,
@@ -33,14 +36,17 @@ const SelectBox = React.forwardRef(
       color = "white_A700",
       ...restProps
     },
-    ref,
+    ref
   ) => {
     return (
       <>
         <Select
           ref={ref}
           options={options}
-          className={`${className} flex ${(shape && shapes[shape]) || ""} ${(size && sizes[size]) || ""} ${(variant && variants[variant]?.[color]) || ""}`}
+          onChange={onChange}
+          className={`${className} flex ${(shape && shapes[shape]) || ""} ${
+            (size && sizes[size]) || ""
+          } ${(variant && variants[variant]?.[color]) || ""}`}
           isSearchable={isSearchable}
           isMulti={isMulti}
           components={{
@@ -72,9 +78,16 @@ const SelectBox = React.forwardRef(
               backgroundColor: state.isSelected ? "#ffffff" : "transparent",
               color: state.isSelected ? "#4a4a4a" : "inherit",
               "&:hover": {
-                backgroundColor: "#ffffff",
-                color: "#4a4a4a",
+                backgroundColor: "#0086CA",
+                color: "#ffffff",
+                cursor: "pointer",
               },
+            }),
+            singleValue: (provided, state) => ({
+              ...provided,
+              fontWeight: "bold", // Makes the selected value font-bold
+              color: "#1a4f6e",
+              fontSize: "14px",
             }),
             valueContainer: (provided) => ({
               ...provided,
@@ -82,7 +95,15 @@ const SelectBox = React.forwardRef(
             }),
             placeholder: (provided) => ({
               ...provided,
+              fontSize: "14px",
               margin: 0,
+            }),
+            menu: (provided) => ({
+              ...provided,
+              marginTop: 0,
+              width: "auto",
+              minWidth: "100%",
+              ...(menuClassName && { className: menuClassName }),
             }),
             menuPortal: (base) => ({ ...base, zIndex: 999999 }),
           }}
@@ -95,7 +116,7 @@ const SelectBox = React.forwardRef(
         {children}
       </>
     );
-  },
+  }
 );
 
 SelectBox.propTypes = {

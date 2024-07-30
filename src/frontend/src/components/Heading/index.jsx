@@ -13,11 +13,20 @@ const sizes = {
   lg: "text-[15px] font-bold",
 };
 
-const Heading = ({ children, className = "", size = "md", as, ...restProps }) => {
+const Heading = ({
+  children,
+  className = "",
+  size = "md",
+  as,
+  ...restProps
+}) => {
   const Component = as || "h6";
 
   return (
-    <Component className={`text-cyan-900 font-poppins ${className} ${sizes[size]}`} {...restProps}>
+    <Component
+      className={`text-cyan-900 font-poppins ${className} ${sizes[size]}`}
+      {...restProps}
+    >
       {children}
     </Component>
   );

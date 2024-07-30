@@ -22,6 +22,7 @@ const sizes = {
 const Input = React.forwardRef(
   (
     {
+      inputClassName = "",
       className = "",
       name = "",
       placeholder = "",
@@ -37,7 +38,7 @@ const Input = React.forwardRef(
       color = "white_A700",
       ...restProps
     },
-    ref,
+    ref
   ) => {
     const handleChange = (e) => {
       if (onChange) {
@@ -48,9 +49,11 @@ const Input = React.forwardRef(
     return (
       <>
         <label
-          className={`${className} flex items-center justify-center cursor-text border-solid  ${
+          className={`flex items-center justify-center cursor-text border-solid h-[38px] rounded-lg ${
             (shape && shapes[shape]) || ""
-          } ${variants[variant]?.[color] || variants[variant] || ""} ${sizes[size] || ""}`}
+          } ${variants[variant]?.[color] || variants[variant] || ""} ${
+            sizes[size] || ""
+          } ${className}`}
         >
           {!!label && label}
           {!!prefix && prefix}
@@ -60,13 +63,14 @@ const Input = React.forwardRef(
             name={name}
             onChange={handleChange}
             placeholder={placeholder}
+            className={`input-base ${inputClassName}`}
             {...restProps}
           />
           {!!suffix && suffix}
         </label>
       </>
     );
-  },
+  }
 );
 
 Input.propTypes = {

@@ -1,119 +1,202 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { Button, Radio, CheckBox, Heading, Img, Text, Input } from "../../components";
-import Header from "../../components/Header";
+import { Button, Heading, Img } from "../../components";
+import Navbar from "../../components/Navbar";
+import CommonInput from "../../components/CommonInput";
+import { useFormContext } from "../../context/FormContextProvider";
+import { useScreenTestContext } from "../../context/ScreenTestContextProvider";
+import axios from "axios";
+import ErrorBoundary from "../../components/ErrorBoundry";
+import { baseUrl, useGoTo } from "../../lib/utils";
 
 export default function ScreeningtestThreePage() {
+  const [expanded, setExpanded] = useState({});
+  const { sharedInputValue, handleInputChange } = useFormContext();
+  const [loading, setLoading] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
+  const { jobId } = useParams();
+  const goTo = useGoTo();
+
+  const { screenTestData, updateScreenTestData, validateScreenTest } =
+    useScreenTestContext();
+
+  const toggleExpand = (index) => {
+    setExpanded((prev) => ({ ...prev, [index]: !prev[index] }));
+  };
+
+  const newHandleInputChange = (event) => {
+    handleInputChange(event);
+    checkCompletion();
+  };
+
+  useEffect(() => {
+    checkCompletion();
+  }, [screenTestData]);
+
+  const handleScreenTest = async () => {
+    const { job_id, screening_test_name, questions } = screenTestData;
+    console.log("handleScreenTest:", screenTestData);
+
+    const requestData = {
+      job_id: job_id,
+      screening_test_name: screening_test_name,
+      questions_data: questions.map((question) => ({
+        question_type: question.questionType || null, // Map `null` if `questionType` is undefined or null
+        question: question.question,
+        options: question.options || [], // Ensure there are default to an empty array if undefined
+        answer:
+          typeof question.correctAnswer === "number"
+            ? question.correctAnswer
+            : null, // Map the correct answer or `null` if it's not a number
+      })),
+    };
+
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        `${baseUrl}/screening_test/create_screening_test/`,
+        requestData
+      );
+      if (response.status === 201) {
+        console.log("Registration successful:", response.data);
+        alert("Screening Test Created Successful!");
+        goTo(`/all-candidates/${jobId}`);
+      } else {
+        console.error("Registration failed with status:", response.status);
+      }
+    } catch (err) {
+      alert(err.response?.data?.error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const checkCompletion = () => {
+    const isScreenTestComplete =
+      screenTestData.screening_test_name.trim() !== "" &&
+      screenTestData.questions.length > 0;
+    setIsComplete(isScreenTestComplete);
+  };
+
   return (
-    <>
+    <ErrorBoundary>
       <Helmet>
         <title>WIIFLEX</title>
-        <meta name="description" content="Web site created using create-react-app" />
+        <meta
+          name="description"
+          content="Web site created using create-react-app"
+        />
       </Helmet>
-      <div className="flex w-full flex-col bg-white-A700 pt-6 sm:pt-5">
-        <div>
-          <Header />
-        </div>
-        <div className="flex w-[76%] items-start justify-between gap-5 md:w-full md:flex-col md:p-5">
-          <div className="flex w-[66%] flex-col items-start justify-center gap-[145px] bg-blue-100 pb-[137px] pl-[159px] pr-14 pt-12 md:w-full md:gap-[108px] md:p-5 sm:gap-[72px]">
-            <Heading size="6xl" as="h1" className="ml-[31px] !text-white-A700 md:ml-0">
-              Connect. Merge. Work
-            </Heading>
-            <Img src="images/img_abstraction.png" alt="abstraction" className="h-[685px] w-[86%] object-cover" />
-          </div>
-          <div className="mt-[51px] flex w-[26%] flex-col items-start gap-5 md:w-full">
-            <Heading size="3xl" as="h2" className="!text-teal-900">
+      <Navbar isScreenTestPage={true} id={jobId} />
+      <div className="flex w-full flex-col items-center justify-center bg-white-A700 pt-6 sm:pt-5">
+        <div className="flex w-[55%] max-w-[565px] items-start justify-between gap-5 md:w-full md:flex-col md:p-5">
+          <div className="flex w-full flex-col items-center md:w-full">
+            <Heading size="3xl" as="h2" className="self-start !text-teal-900">
               Add Screening Tests
             </Heading>
-            <div className="flex flex-col items-center self-stretch">
-              <Input
-                type="text"
-                name="name"
-                placeholder={`Test Name`}
-                className="h-[70px] self-stretch rounded border-[0.5px] border-gray-200_03 pl-3.5 pr-[35px] text-sm font-bold text-cyan-900 sm:pr-5"
-              >
-                iOS Developers screening tests
-              </Input>
-              <Heading as="h3" className="ml-1.5 mt-2.5 self-start !text-gray-600 md:ml-0">
-                Select Questions
-              </Heading>
-              <div className="mt-[18px] flex flex-col items-start self-stretch rounded-md bg-gray-50 px-[13px] pb-[17px] pt-3.5">
-                <Heading as="h4" className="!text-gray-600">
-                  Add Custom Questions
-                </Heading>
-                <Input
-                  size="md"
-                  shape="round"
-                  name="type_question"
-                  placeholder={`Type question…`}
-                  className="mt-[15px] self-stretch border-[0.5px] border-gray-200_03 font-bold sm:pr-5"
+            <div className="self-stretch">
+              <div className="flex flex-col items-center">
+                <CommonInput
+                  value={sharedInputValue}
+                  onChange={newHandleInputChange}
                 />
-                <div className="mt-[11px] flex flex-col items-start gap-[9px] self-stretch rounded border-[0.5px] border-solid border-gray-200_03 bg-white-A700 pb-2 pl-[15px] pr-3 pt-3">
-                  <Text size="xs" as="p">
-                    Question type
-                  </Text>
-                  <div className="flex items-center justify-between gap-5 self-stretch">
-                    <Heading as="h5">Written </Heading>
-                    <Img src="images/img_path.svg" alt="path" className="mb-1.5 h-[6px] self-end" />
-                  </div>
+                <Heading as="h3" className="mt-7 self-start !text-gray-600">
+                  Questions
+                </Heading>
+                <div className="mt-[18px] flex flex-col gap-5 self-stretch">
+                  {screenTestData?.questions?.map((questionItem, index) => {
+                    const { questionType, question, options, correctAnswer } =
+                      questionItem;
+
+                    // Format values to handle undefined, null, or empty cases
+                    const displayQuestionType = questionType || "NA";
+                    const displayOptions = options?.length
+                      ? options.join(", ")
+                      : "NA";
+                    const displayCorrectAnswer = correctAnswer ?? "NA";
+
+                    return (
+                      <div key={index} className="cursor-pointer">
+                        <div
+                          className="flex justify-between w-full"
+                          onClick={() => toggleExpand(index)}
+                        >
+                          <Heading as="h4">{question}</Heading>
+                          <Img
+                            src="/images/img_path.svg"
+                            alt="path"
+                            className={`h-[6px] transition-transform duration-300 cursor-pointer ${
+                              expanded[index] ? "rotate-180" : ""
+                            }`}
+                          />
+                        </div>
+                        {expanded[index] && (
+                          <div className="">
+                            <Heading as="h4">
+                              Type: {displayQuestionType}
+                            </Heading>
+                            <Heading as="h4">Options: {displayOptions}</Heading>
+                            <Heading as="h4">
+                              Correct Answer:
+                              {displayCorrectAnswer !== "NA"
+                                ? options[displayCorrectAnswer]
+                                : displayCorrectAnswer}
+                            </Heading>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
-                <div className="ml-[9px] mt-6 flex items-center gap-[25px] md:ml-0">
-                  <Heading size="lg" as="h6" className="!text-light_blue-700">
+                <div className="mt-[61px] w-full flex items-center justify-between md:w-full">
+                  <Button
+                    size="xl"
+                    shape="round"
+                    className="!bg-white-A700 text-light_blue-700 border-[1px] border-light_blue-700 min-w-[246px] font-bold transition-transform duration-300 hover:scale-105 sm:px-5"
+                    onClick={() => goTo(`/screeningtesttwo/${jobId}`)}
+                  >
                     Cancel
-                  </Heading>
-                  <Button size="xl" shape="round" className="min-w-[140px] font-bold sm:px-5">
-                    Add
+                  </Button>
+
+                  <Button
+                    size="xl"
+                    shape="round"
+                    className={`min-w-[246px] font-bold transition-transform duration-300 hover:scale-105 sm:px-5 ${
+                      isComplete
+                        ? "bg-light_blue-700"
+                        : "bg-gray-400 cursor-not-allowed"
+                    }`}
+                    onClick={handleScreenTest}
+                    disabled={!isComplete}
+                  >
+                    {loading && (
+                      <svg
+                        aria-hidden="true"
+                        role="status"
+                        className="mr-3 -ml-1 w-4 h-4 text-white animate-spin"
+                        viewBox="0 0 100 101"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                          fill="#E5E7EB"
+                        />
+                        <path
+                          d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    )}
+                    Send Test
                   </Button>
                 </div>
               </div>
-              <div className="mt-5 self-stretch rounded border-[0.5px] border-solid border-light_blue-300 bg-white-A700 pb-[13px] pt-3.5">
-                <div className="flex flex-col items-start gap-2.5">
-                  <div className="ml-2.5 flex items-center gap-[7px] md:ml-0">
-                    <Img src="images/img_search.svg" alt="search" className="h-[16px] w-[16px]" />
-                    <Heading as="p" className="!text-light_blue-700">
-                      Seach Questions
-                    </Heading>
-                  </div>
-                  <div className="h-px w-full self-stretch bg-gray-200_01" />
-                  <CheckBox
-                    name="checkmark"
-                    label="How many years of experience you have?"
-                    id="checkmark"
-                    className="ml-2 gap-[7px] p-px text-sm font-bold text-cyan-900 md:ml-0"
-                  />
-                  <div className="h-px w-full self-stretch bg-gray-200_01" />
-                  <Radio
-                    value="doyouworkwithfigma"
-                    name="doyouwork"
-                    label="Do you work with Figma?"
-                    className="ml-2 w-[56%] gap-[7px] text-sm font-bold text-cyan-900 md:ml-0"
-                  />
-                  <div className="h-px w-full self-stretch bg-gray-200_01" />
-                  <CheckBox
-                    name="checkmark_one"
-                    label="How many hours can you work per week?"
-                    id="checkmarkone"
-                    className="ml-2 gap-[7px] text-sm font-bold text-cyan-900 md:ml-0"
-                  />
-                  <div className="h-px w-full self-stretch bg-gray-200_01" />
-                  <Radio
-                    value="whatisyourexpectedmonthlysalary"
-                    name="whatisyour"
-                    label="What is your expected monthly salary?"
-                    className="ml-2 w-[83%] gap-[7px] text-sm font-bold text-cyan-900 md:ml-0"
-                  />
-                </div>
-              </div>
-              <Link to="/screeningtestfour">
-                <Button size="xl" shape="round" className="mt-[17px] w-full font-bold sm:px-5">
-                  Continue
-                </Button>
-              </Link>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </ErrorBoundary>
   );
 }

@@ -1,5 +1,6 @@
 # Ignore backend dependencies
 venv/
+.venv/
 
 # Ignore environment variables
 .env
@@ -15,8 +16,12 @@ __pycache__/
 # Ignore test files
 test.py
 
+# Ignore temp files
+temp.json
+
 # Migrations Folder
 migrations/
+db.sqlite3
 
 # Ignore logs files
 logs/
@@ -31,11 +36,7 @@ node_modules/
 dist/
 dist-ssr
 *.local
-
-# vitest test directory
-coverage/
-__tests__/
-mocks/
+/build
 
 # Ignore editor directories and files
 .vscode/*

@@ -6,7 +6,7 @@ class CompanyDetails(models.Model):
     name = models.CharField(max_length=255, unique=True, null=True, blank=True)
     size = models.IntegerField(default=1)
     website = models.URLField(max_length=200, null=True, blank=True)
-    phone = models.CharField(max_length=15, unique=True, null=True, blank=True)
+    phone = models.CharField(max_length=15, unique=False, null=True, blank=True)
     city = models.CharField(max_length=255, null=True, blank=True)
     state = models.CharField(max_length=255, null=True, blank=True)
     country = models.CharField(max_length=255, null=True, blank=True)

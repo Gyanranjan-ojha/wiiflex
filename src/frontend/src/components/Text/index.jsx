@@ -12,7 +12,10 @@ const Text = ({ children, className = "", as, size = "md", ...restProps }) => {
   const Component = as || "p";
 
   return (
-    <Component className={`text-cyan-900_66 font-poppins ${className} ${sizes[size]}`} {...restProps}>
+    <Component
+      className={`text-cyan-900_66 font-poppins ${className} ${sizes[size]}`}
+      {...restProps}
+    >
       {children}
     </Component>
   );

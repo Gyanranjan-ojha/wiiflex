@@ -1,50 +1,42 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const variants = {
-  primary: "  ",
-};
-const sizes = {
-  xs: "h-[20px] w-[20px]",
-};
-
 const CheckBox = React.forwardRef(
   (
     {
       className = "",
       name = "",
-      children,
+      value,
       label = "",
-      id = "checkbox_id",
+      id,
       onChange,
+      checked,
       variant = "primary",
       size = "xs",
       ...restProps
     },
-    ref,
+    ref
   ) => {
-    const handleChange = (e) => {
-      if (onChange) onChange(e?.target?.checked);
-    };
-
+    const checkboxId = id || `checkbox-${name}-${value}`;
     return (
       <>
-        <div className={className + " flex items-center gap-[5px] cursor-pointer"}>
+        <label className={`container ${className}`} htmlFor={id}>
+          {label}
           <input
-            className={` ${(size && sizes[size]) || ""} ${(variant && variants[variant]) || ""}`}
             ref={ref}
             type="checkbox"
             name={name}
-            onChange={handleChange}
-            id={id}
+            checked={checked}
+            onChange={onChange}
+            id={checkboxId}
+            className="checkbox-radio-like"
             {...restProps}
           />
-          {!!label && <label htmlFor={id}>{label}</label>}
-        </div>
-        {children}
+          <span className="checkmark"></span>
+        </label>
       </>
     );
-  },
+  }
 );
 
 CheckBox.propTypes = {
@@ -54,6 +46,8 @@ CheckBox.propTypes = {
   id: PropTypes.string,
   size: PropTypes.oneOf(["xs"]),
   variant: PropTypes.oneOf(["primary"]),
+  checked: PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
 };
 
 export { CheckBox };

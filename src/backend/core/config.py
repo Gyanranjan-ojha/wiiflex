@@ -22,6 +22,8 @@ class EnvSettings(BaseSettings):
   DJANGO_SUPERUSER_EMAIL: EmailStr
   DJANGO_SUPERUSER_PASSWORD: SecretStr
   FE_DOMAIN: str
+  AUTH_EMAIL_HOST_USER: EmailStr
+  AUTH_EMAIL_HOST_PASSWORD: SecretStr
   
   class Config:
     env_file = '.env'
@@ -45,6 +47,13 @@ class EnvSettings(BaseSettings):
       "MYSQL_PASSWORD": self.MYSQL_PASSWORD.get_secret_value(),
       "MYSQL_PORT": self.MYSQL_PORT,
       "MYSQL_DB": self.MYSQL_DB,
+    }
+  
+  def email_env(self) -> Dict[str, str]:
+    """Returns SMTP Email related environment variables."""
+    return {
+      "AUTH_EMAIL_HOST_USER": self.AUTH_EMAIL_HOST_USER,
+      "AUTH_EMAIL_HOST_PASSWORD": self.AUTH_EMAIL_HOST_PASSWORD.get_secret_value(),
     }
 
 # Instantiate the settings

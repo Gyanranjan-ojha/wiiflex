@@ -9,4 +9,21 @@ import { TextArea } from "./TextArea";
 import { Switch } from "./Switch";
 import { SelectBox } from "./SelectBox";
 import { CheckBox } from "./CheckBox";
-export { Text, Heading, Button, Img, Input, RadioGroup, Radio, TextArea, Switch, SelectBox, CheckBox };
+import { ChipView } from "./ChipView";
+import { Slider } from "./Slider";
+
+export {
+  Text,
+  Heading,
+  Button,
+  Img,
+  Input,
+  RadioGroup,
+  Radio,
+  TextArea,
+  Switch,
+  SelectBox,
+  CheckBox,
+  ChipView,
+  Slider,
+};

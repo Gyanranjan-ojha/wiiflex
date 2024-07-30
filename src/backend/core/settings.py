@@ -5,7 +5,7 @@ Django settings for core project.
 from pathlib import Path
 from .config import env_settings
 from os import path
-from django.utils import timezone
+# from django.utils import timezone
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,7 +43,10 @@ PACKAGE_APPS = [
 CUSTOM_APPS = [
     'accounts.apps.AccountsConfig', # accounts app
     'company.apps.CompanyConfig', # company app
-    'job.apps.JobConfig', # job app
+    'job.apps.JobConfig', # job app 
+    'screening_test.apps.ScreeningTestConfig', # screening test app 
+    'dashboard.apps.DashboardConfig', # dashboard app
+    'candidates.apps.CandidatesConfig', # candidates app 
 ]
 INSTALLED_APPS = DEFAULT_APPS + PACKAGE_APPS + CUSTOM_APPS
 
@@ -102,7 +105,6 @@ DATABASES = {
         },
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -170,6 +172,8 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ALLOW_METHODS = [
     'GET',
     'POST',
+    'PUT',
+    'DELETE',
 ]
 
 CORS_ALLOW_HEADERS = [
@@ -218,43 +222,53 @@ SECURE_SSL_REDIRECT = False #True
 # Save HubSpot uploaded files in media folder
 MEDIA_ROOT = path.join(BASE_DIR, 'media')
 
-# Logging
-LOG_DIR = path.join(BASE_DIR, 'logs/')
+# # Logging
+# LOG_DIR = path.join(BASE_DIR, 'logs/')
 
-# Get the current UTC date
-current_date = timezone.now().strftime('%Y-%m-%d')
+# # Get the current UTC date
+# current_date = timezone.now().strftime('%Y-%m-%d')
 
-LOG_FILE = f'api_{current_date}.log'
-LOG_PATH = path.join(LOG_DIR, LOG_FILE)
+# LOG_FILE = f'api_{current_date}.log'
+# LOG_PATH = path.join(LOG_DIR, LOG_FILE)
 
-LOGGER_LEVEL = 'INFO'
+# LOGGER_LEVEL = 'INFO'
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'custom_verbose': {
-            'format': '[%(levelname)s] %(asctime)s %(name)s: %(message)s',
-            'datefmt': '%d/%b/%Y %H:%M:%S UTC',
-        },
-    }, 
-    'handlers': {
-        'file': {
-            'level': LOGGER_LEVEL,
-            'class': 'logging.handlers.TimedRotatingFileHandler',
-            'filename': LOG_PATH,
-            'when': 'midnight',  # 'midnight' for daily rotation
-            'interval': 1,  # Interval set to 1 day
-            'backupCount': 30,  # Keep 30 days' worth of logs
-            'formatter': 'custom_verbose',
-            'encoding': 'utf8',
-        },
-    },
-    'loggers': {
-        'WIIFLEX_API': {
-            'handlers': ['file'],
-            'level': LOGGER_LEVEL,
-            'propagate': True,
-        },
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'custom_verbose': {
+#             'format': '[%(levelname)s] %(asctime)s %(name)s: %(message)s',
+#             'datefmt': '%d/%b/%Y %H:%M:%S UTC',
+#         },
+#     }, 
+#     'handlers': {
+#         'file': {
+#             'level': LOGGER_LEVEL,
+#             'class': 'logging.handlers.TimedRotatingFileHandler',
+#             'filename': LOG_PATH,
+#             'when': 'midnight',  # 'midnight' for daily rotation
+#             'interval': 1,  # Interval set to 1 day
+#             'backupCount': 30,  # Keep 30 days' worth of logs
+#             'formatter': 'custom_verbose',
+#             'encoding': 'utf8',
+#         },
+#     },
+#     'loggers': {
+#         'WIIFLEX_API': {
+#             'handlers': ['file'],
+#             'level': LOGGER_LEVEL,
+#             'propagate': True,
+#         },
+#     },
+# }
+
+# SMTP Email Configuration
+email_settings = env_settings.email_env()
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = email_settings["AUTH_EMAIL_HOST_USER"]
+EMAIL_HOST_PASSWORD = email_settings["AUTH_EMAIL_HOST_PASSWORD"]

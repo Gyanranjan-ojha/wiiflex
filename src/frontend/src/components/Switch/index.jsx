@@ -16,18 +16,16 @@ const Switch = ({
   checkedIcon = <></>,
   uncheckedIcon = <></>,
   onChange,
-
+  checked,
   size = "xs",
 }) => {
-  const [selected, setSelected] = React.useState(value);
   const handleChange = (val) => {
-    setSelected(val);
-    onChange?.(val);
+    onChange?.(val); // Call the passed onChange with new value
   };
   return (
     <div className={className}>
       <SwitchProvider
-        checked={selected}
+        checked={checked}
         onChange={handleChange}
         {...sizes[size]}
         checkedIcon={checkedIcon}
@@ -38,11 +36,11 @@ const Switch = ({
 };
 
 Switch.propTypes = {
-  value: PropTypes.bool,
   className: PropTypes.string,
   checkedIcon: PropTypes.node,
   uncheckedIcon: PropTypes.node,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
+  checked: PropTypes.bool.isRequired,
   size: PropTypes.oneOf(["xs"]),
 };
 
